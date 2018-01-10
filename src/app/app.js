@@ -6,6 +6,10 @@ import Vue from 'vue'
 
 export default {
 
+	mounted() {
+		(this.$refs.search_input).focus()
+	},
+
 	data() {
 		return {
 			search: '',
@@ -20,7 +24,7 @@ export default {
 	computed: {
 
 		items() {
-			return this.$store.state.accessLevels.map((accessLevel, index) => {
+			return this.$store.state.accessLevels.map(accessLevel => {
 				let reader = this.$store.state.readers.find(v => v.id == accessLevel.readerId) || {}
 				let type = this.$store.state.readerTypes.find(v => v.id == reader.typeId) || {}
 				return {

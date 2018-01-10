@@ -12,10 +12,10 @@
     <v-content>
         <v-container fluid>
 
-            <v-text-field class="mb-3" ref="search_input" label="Search..." solo spellcheck="false" v-model="search"
-                prepend-icon="search" clearable hide-details></v-text-field>
+            <v-text-field ref="search_input" class="mb-3" label="Search..." solo spellcheck="false" v-model="search" prepend-icon="search"
+                clearable hide-details></v-text-field>
 
-            <v-data-table :headers="headers" :items="items" hide-actions class="elevation-1">
+            <v-data-table class="elevation-1" :headers="headers" :items="items" :search="search" hide-actions>
                 <template slot="items" slot-scope="props">
                     <td>{{ props.item.name }}</td>
                     <td>{{ props.item.type }}</td>
