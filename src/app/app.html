@@ -2,7 +2,7 @@
 
 <v-app>
 
-    <v-toolbar fixed app>
+    <v-toolbar app fixed dark color="secondary">
         <v-toolbar-title>S2 Securities</v-toolbar-title>
         <v-spacer></v-spacer>
     </v-toolbar>
@@ -17,7 +17,7 @@
 
             <v-data-table class="elevation-1" :headers="headers" :items="items" :search="search" hide-actions>
                 <template slot="items" slot-scope="props">
-                    <tr v-on:click="setEditing(props.item)">
+                    <tr class="clickable" v-on:click="setEditing(props.item)">
                         <td>{{ props.item.name }}</td>
                         <td>{{ props.item.type }}</td>
                         <td>{{ props.item.reader }}</td>
@@ -32,7 +32,7 @@
 
 
 
-    <v-navigation-drawer app absolute right v-model="drawer">
+    <v-navigation-drawer app fixed right v-model="drawer">
         <v-toolbar dense dark color="primary">
             <v-toolbar-title>Edit Access Level</v-toolbar-title>
             <v-spacer></v-spacer>
