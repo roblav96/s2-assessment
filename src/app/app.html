@@ -12,14 +12,16 @@
     <v-content>
         <v-container fluid>
 
-            <v-text-field ref="search_input" class="mb-3" label="Search..." solo spellcheck="false" v-model="search" prepend-icon="search"
-                clearable hide-details></v-text-field>
+            <v-text-field ref="search_input" class="mb-3" label="Search..." solo spellcheck="false" v-model="search"
+                prepend-icon="search" clearable hide-details></v-text-field>
 
             <v-data-table class="elevation-1" :headers="headers" :items="items" :search="search" hide-actions>
                 <template slot="items" slot-scope="props">
-                    <td>{{ props.item.name }}</td>
-                    <td>{{ props.item.type }}</td>
-                    <td>{{ props.item.reader }}</td>
+                    <tr v-on:click="setEditing(props.item)">
+                        <td>{{ props.item.name }}</td>
+                        <td>{{ props.item.type }}</td>
+                        <td>{{ props.item.reader }}</td>
+                    </tr>
                 </template>
             </v-data-table>
 
@@ -30,9 +32,26 @@
 
 
 
+    <v-navigation-drawer app absolute right v-model="drawer">
+        <v-toolbar dense dark color="primary">
+            <v-toolbar-title>Edit Access Level</v-toolbar-title>
+            <v-spacer></v-spacer>
+            <v-btn icon medium class="mr-2" v-on:click="drawer = false">
+                <v-icon>close</v-icon>
+            </v-btn>
+        </v-toolbar>
+        <v-layout column class="pa-2">
+            <v-text-field class="mb-2" :value="editing.name" label="Access Name" hide-details></v-text-field>
+            <v-text-field :value="editing.description" label="Description" hide-details></v-text-field>
+        </v-layout>
+    </v-navigation-drawer>
+
+
+
     <v-footer fixed app>
         <span>Robert Laverty - S2 Assessment</span>
     </v-footer>
 
 </v-app>
+
 
