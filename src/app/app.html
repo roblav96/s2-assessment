@@ -41,17 +41,24 @@
             </v-btn>
         </v-toolbar>
         <v-layout column class="pa-2">
-            <v-text-field class="mb-2" :value="editing.name" label="Access Name" hide-details></v-text-field>
-            <v-text-field :value="editing.description" label="Description" hide-details></v-text-field>
+            <v-form v-on:submit.prevent="saveChanges">
+                <v-text-field ref="editing_name" class="mb-2" v-model="editing.name" label="Access Name" hide-details></v-text-field>
+                <v-text-field class="mb-2" v-model="editing.description" label="Description" hide-details></v-text-field>
+
+                <v-btn type="submit" color="info" v-on:click="saveChanges" :loading="saving" :disabled="saving" class="white--text">
+                    <v-icon left dark>save</v-icon>
+                    Save
+                </v-btn>
+
+            </v-form>
         </v-layout>
     </v-navigation-drawer>
 
 
 
-    <v-footer fixed app>
+    <!-- <v-footer fixed app>
         <span>Robert Laverty - S2 Assessment</span>
-    </v-footer>
+    </v-footer> -->
 
 </v-app>
-
 
